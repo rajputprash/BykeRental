@@ -1,0 +1,21 @@
+// Declarative //
+pipeline {
+    agent any { label "kubepod" }
+
+    stages {
+        stage('Checkout source') {
+            steps {
+                git url: 'https://github.com/rajputprash/BykeRental', branch: 'test-deploy-stage'
+            }
+        }
+        stage('deploy app') {
+            steps {
+             scripts {
+                kubernetesDeploy(configs:  "ngnix.yaml", "jenkins-data")
+            }
+          }
+        }
+      
+    }
+   
+}
