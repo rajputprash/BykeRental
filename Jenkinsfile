@@ -8,14 +8,14 @@ pipeline {
                 git url: 'https://github.com/rajputprash/BykeRental', branch: 'test-deploy-stage'
             }
         }
-        stage('deploy app') {
+        stage('Deploy APP') {
             steps {
-             scripts {
-                kubernetesDeploy(configs:  "ngnix.yaml", "jenkins-data")
+             script {
+                kubernetesDeploy(configs:  "nginx.yaml", "jenkins-data")
             }
           }
         }
       
-    }
+    
    
-}
+
